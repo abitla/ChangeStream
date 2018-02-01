@@ -16,7 +16,7 @@ java -jar ChangeStream.jar  -type reader -srcDB <Name of Source DB> -srcColl <Na
 java -jar ChangeStream.jar  -type writer -targetDB <Name of target DB> -targetColl <Name of target Collection> -targetConn <Target MOngoDB Connection String> -streamDB <Name of the intermediate db to store changes> -streanColl <Name of collection for storing changes> -streamConn <Connection string for intermediate MongoDB instance> -nThreads <Number of threads default 16>
 
 
-4. When you want to Stop streaming, you can have one last batch to write as discussed when I was onsite. Stop the previous reader job and then reduce the bsize to 1 and pass the resumeToken.
+4. When you want to Stop streaming, you may have one last batch that is not applied yet. Stop the previous reader job and then reduce the bsize to 1 and pass the resumeToken.
 
 So here is how you get the latest resume token from the intermediate collection:
  db.collection.find().sort({$natural:-1}).limit(1)
